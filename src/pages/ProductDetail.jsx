@@ -5,11 +5,13 @@ import { useParams } from "react-router-dom"
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col';
 
+
 const ProductDetail = () => {
 const {id} = useParams()
 const[detail,setDetail] = useState ({})
 
   useEffect(()=>{
+
   axios
     .get(`https://e-commerce-api-v2.academlo.tech/api/v1/products/${id}`)
     .then(resp =>setDetail(resp.data))

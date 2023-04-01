@@ -4,7 +4,8 @@
    
    align-items: center;
    text-align: center;
- 
+   margin: 50px;
+  
    
   }
 
@@ -13,5 +14,31 @@
     margin: 10px;
 
   }
+  /*.loader{
+
+    background-color: rgba(211, 211, 211, 0.856);
+
+    position: fixed;
+
+    top: 0;
+
+    bottom: 0;
+
+    right: 0;
+
+    left: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
 
   
+
+}*/
+  
+.card{
+  padding: 6px;
+  text-align: center;
+}

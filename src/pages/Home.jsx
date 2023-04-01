@@ -24,14 +24,17 @@ const Home = () => {
            
            <Container className='gap'>
                <Row className='gap'>
-            <form class="d-flex">
-             <input class="form-control me-sm-2" type="search" placeholder="Search"/>
-             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            <form className="d-flex">
+             <input className="form-control me-sm-2" type="search" placeholder="Search"/>
+             <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
              </form>
             </Row>
-            <Row >
+
+            <Card className='card'>
+                <h3>category</h3>
+                  <Row >
               <Col>
-                <Button>Esmartphones</Button>
+                <Button>Smartphones</Button>
               </Col>
                 <Col>
                 <Button>Smart Tv</Button>
@@ -46,6 +49,8 @@ const Home = () => {
                 <Button>All</Button>
               </Col>
             </Row>
+            </Card>
+        
          
                 <Row xs={1} md={2} lg={3} className="py-3">
                     {
@@ -69,6 +74,7 @@ const Home = () => {
                                         as={Link}
                                         to= {`/product/${product.id}`}
                                         variant="primary">Ver detalle</Button>
+                                        <Button>🛒</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>

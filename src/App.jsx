@@ -6,13 +6,17 @@ import Home from './pages/Home'
 import ProductDetail from './pages/ProductDetail'
 import Login from './pages/Login'
 import Purchases from './pages/Purchases'
+import Loader from "./components/Loader"
+
 
 function App() {
 
+
   return (
-    <HashRouter>
+     <HashRouter>
        <div className="App">
-        <Navbar/>
+        <Navbar/> 
+         {/*<Loader/>*/}
         <Routes>
           <Route path="/" element={<Home/>} /> 
           <Route path="/product/:id" element={<ProductDetail/>} /> 

@@ -3,7 +3,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Card from 'react-bootstrap/Card'
-import Col from 'react-bootstrap/Col';
+import Col from 'react-bootstrap/Col'
 
 
 const ProductDetail = () => {
@@ -19,10 +19,11 @@ const[detail,setDetail] = useState ({})
   },[])
 
   return (
+    
     <Col className="grid" >
     
     
-          <Card className="detail">
+          <Card className="detail ">
                <Card.Title> <h1> {detail.title}</h1></Card.Title>
           
             <div>
@@ -54,10 +55,10 @@ const[detail,setDetail] = useState ({})
               { detail.description}
           </Card.Text>
           <Card.Text>
-              <h4>creado:{ detail.createdAt}</h4>
+              <p>creado:{ detail.createdAt}</p>
           </Card.Text>
           <Card.Text>
-              <h4>Actualizado:{ detail.updatedAt}</h4>
+              <p>Actualizado:{ detail.updatedAt}</p>
           </Card.Text>
         
     </Card.Body>

@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios'
 
+
 export const newsSlice = createSlice({
     name: 'news',
     initialState: [],
@@ -20,10 +21,20 @@ export const getNewsThunk = () => dispatch =>{
 
 }
 
-export const filterCategoriesThunk = ( )=> dispatch => {
+export const filterCategoriesThunk = id => dispatch => {
     axios
-      .get ('https://e-commerce-api-v2.academlo.tech/api/v1/categories=${id}')
-}
+      .get (`https://e-commerce-api-v2.academlo.tech/api/v1/products?categoryId=${id}`)
+      .then (resp =>dispatch(setNews(resp.data)))
+      .catch ( error => console.error(error))
+    }
+
+    export const filterHeadCategoriesThunk = sony => dispatch =>
+    {
+        axios
+           .get`https://e-commerce-api-v2.academlo.tech/api/v1/products?title=${sony}`
+           .then (resp=> dispatch(setNews(resp.data)))  
+           .catch(error=>console.error(error)) 
+        }
 
 
 export const { setNews } = newsSlice.actions;

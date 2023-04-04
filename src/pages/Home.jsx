@@ -1,66 +1,88 @@
-
-
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { useSelector, useDispatch } from 'react-redux'
-import { getNewsThunk } from '../store/slices/news.slice'
-import { useEffect } from 'react'
+import Form  from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import { useSelector, useDispatch } from 'react-redux';
+import { getNewsThunk, filterCategoriesThunk,  filterHeadCategoriesThunk  } from '../store/slices/news.slice';
+import { useEffect,useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 
+
 const Home = () => {
-    const news = useSelector( state => state.news )
+    const products = useSelector( state => state.news )
     const dispatch = useDispatch()
+    const[categories, setCategories] = useState([])
+    const[inputSearch, setInputSearch] = useState ("") 
 
     useEffect( () => {
         dispatch( getNewsThunk() )
+       axios
+          .get(`https://e-commerce-api-v2.academlo.tech/api/v1/categories`)
+           .then(resp=>setCategories(resp.data))
+           .catch(error=> console.error(error))
     }, [] )
 
     return (
         <div>
            
-           <Container className='gap'>
+ <Container className='gap'>
                <Row className='gap'>
-            <form className="d-flex">
-             <input className="form-control me-sm-2" type="search" placeholder="Search"/>
-             <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-             </form>
+                <Col>
+                 < InputGroup className="d-flex">
+             < Form.Control
+             placeholder='Buscar producto'
+             aria-label='nuws`s name'
+             aria-describedby='basic-addon2'
+             value = {inputSearch}
+             className="form-control me-sm-2"
+             onChange={e  => setInputSearch(e.target.value)}
+             />
+              <Button
+              variant="outline-primary"
+
+              onClick={() => dispatch( filterHeadCategoriesThunk (inputSearch) )}>
+                Search
+            </Button>
+
+             </ InputGroup>
+                </Col>
+           
             </Row>
 
             <Card className='card'>
                 <h3>category</h3>
-                  <Row >
-              <Col>
-                <Button>Smartphones</Button>
+
+                  <Row  >
+               
+               {
+
+                categories.map(category =>(
+                    <Col key={category.id}>
+                <Button className='w100' onClick={ ()=>
+                dispatch( filterCategoriesThunk(category.id) )  }
+                >{category.name}</Button>
               </Col>
-                <Col>
-                <Button>Smart Tv</Button>
-              </Col>
-              <Col>
-                <Button>Computers</Button>
-              </Col>
-              <Col>
-                <Button>Stoves</Button>
-              </Col>
-              <Col>
-                <Button>All</Button>
-              </Col>
+                    ))
+               }
+
             </Row>
             </Card>
         
          
                 <Row xs={1} md={2} lg={3} className="py-3">
                     {
-                        news.map( product => (
+                        products .map( product => (
                             <Col className="mb-3" key={ product.id }>
                                 <Card>
                                     <Card.Img 
                                     variant="top" 
                                     src={ product.images?.[0].url } 
-                                    style={{ height: 400, objectFit: "contain" }}
+                                    style={{  objectFit: "contain" }}
                                     />
                                     <Card.Body>
                                         <Card.Title>{ product.title }</Card.Title>
@@ -70,8 +92,8 @@ const Home = () => {
                                         <Card.Text>
                                             { product.price }
                                         </Card.Text>
-                                        <Button 
-                                        as={Link}
+                                      <Button 
+                                      as={Link}
                                         to= {`/product/${product.id}`}
                                         variant="primary">Ver detalle</Button>
                                         <Button>🛒</Button>

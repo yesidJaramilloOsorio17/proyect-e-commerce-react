@@ -3,7 +3,7 @@ import news from './slices/news.slice'
 
 export default configureStore({
     reducer: {
-        news,
+        news
     
     }
 })

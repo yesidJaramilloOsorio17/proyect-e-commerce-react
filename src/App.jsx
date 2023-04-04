@@ -2,11 +2,11 @@
 import './App.css'
 import {HashRouter,Routes,Route} from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Home from './pages/Home'
+import Home from './pages/home'
 import ProductDetail from './pages/ProductDetail'
 import Login from './pages/Login'
 import Purchases from './pages/Purchases'
-import Loader from "./components/Loader"
+
 
 
 function App() {

@@ -61,13 +61,13 @@ const Home = () => {
                
                {
 
-                categories.map(category =>(
+                categories.map(category =>
                     <Col key={category.id}>
                 <Button className='w100' onClick={ ()=>
                 dispatch( filterCategoriesThunk(category.id) )  }
                 >{category.name}</Button>
               </Col>
-                    ))
+                    )
                }
 
             </Row>

@@ -14,9 +14,9 @@
     margin: 10px;
 
   }
-  /*.loader{
+  .loader{
 
-    background-color: rgba(211, 211, 211, 0.856);
+    background-color: rgba(211, 211, 211, 0.705);
 
     position: fixed;
 
@@ -34,9 +34,9 @@
 
     align-items: center;
 
-  
+  z-index: 100;
 
-}*/
+}
   
 .card{
   padding: 6px;

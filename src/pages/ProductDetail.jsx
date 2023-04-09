@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 
 
+
 const ProductDetail = () => {
 const {id} = useParams()
 const[detail,setDetail] = useState ({})

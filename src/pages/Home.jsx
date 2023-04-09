@@ -36,16 +36,16 @@ const Home = () => {
                  < InputGroup className="d-flex">
              < Form.Control
              placeholder='Buscar producto'
-             aria-label='nuws`s name'
+             aria-label='news`s name'
              aria-describedby='basic-addon2'
              value = {inputSearch}
-             className="form-control me-sm-2"
-             onChange={e  => setInputSearch(e.target.value)}
+              onChange={e  => setInputSearch(e.target.value)}
+            
              />
               <Button
               variant="outline-primary"
-
-              onClick={() => dispatch( filterHeadCategoriesThunk (inputSearch) )}>
+              onClick={() => dispatch( 
+              filterHeadCategoriesThunk (inputSearch) )}>
                 Search
             </Button>
 
@@ -63,12 +63,16 @@ const Home = () => {
 
                 categories.map(category =>
                     <Col key={category.id}>
-                <Button className='w100' onClick={ ()=>
+                <Button className='w-100' onClick={ ()=>
                 dispatch( filterCategoriesThunk(category.id) )  }
                 >{category.name}</Button>
               </Col>
                     )
                }
+               <Col>
+                <Button onClick={()=>dispatch(getNewsThunk())}
+                  className="w-100">All</Button>
+               </Col>
 
             </Row>
             </Card>

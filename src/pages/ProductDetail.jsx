@@ -47,19 +47,19 @@ const[detail,setDetail] = useState ({})
               { detail.price }
          </Card.Text>
          <Card.Text>
-              <h2>{ detail.brand}</h2>
+              { detail.brand}
          </Card.Text>
     <Card.Body>
    
           
           <Card.Text>
-              { detail.description}
+             { detail.description} 
           </Card.Text>
           <Card.Text>
-              <p>creado:{ detail.createdAt}</p>
+             creado:{ detail.createdAt}
           </Card.Text>
           <Card.Text>
-              <p>Actualizado:{ detail.updatedAt}</p>
+             Actualizado:{ detail.updatedAt}
           </Card.Text>
         
     </Card.Body>

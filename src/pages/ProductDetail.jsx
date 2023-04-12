@@ -4,13 +4,19 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Card from 'react-bootstrap/Card'
 import { Container } from "react-bootstrap"
-import Carousel from 'react-bootstrap/Carousel';
-
+import Carousel from 'react-bootstrap/Carousel'
+import Button from "react-bootstrap/Button"
+import Col from "react-bootstrap/col"
+import Row from "react-bootstrap/Row"
+import {createPurchasesThunk} from "../store/slices/Purchases.slice"
+import { useDispatch } from "react-redux"
 
 
 const ProductDetail = () => {
 const {id} = useParams()
 const[detail,setDetail] = useState ({})
+const[counter, setCounter]= useState(1)
+const dispatch = useDispatch()
 
   useEffect(()=>{
 
@@ -19,6 +25,15 @@ const[detail,setDetail] = useState ({})
     .then(resp =>setDetail(resp.data))
     .catch(error=>console.error(error))
   },[])
+
+  const addPurchases = () => {
+    const data = {
+     quantity:counter,
+      productId: id
+    }
+
+    dispatch(createPurchasesThunk(data));
+  }
 
   return (
     
@@ -31,7 +46,7 @@ const[detail,setDetail] = useState ({})
                <Card.Title> <h1> {detail.title}</h1></Card.Title>
                <Carousel>
       <Carousel.Item>
-                      <Card.Img
+           <Card.Img
        variant="top" 
       src={detail.images?.[2].url}
      style={{ width: 350, height: 400, objectFit: "contain" }}/>
@@ -51,7 +66,7 @@ const[detail,setDetail] = useState ({})
       style={{ width: 350, height: 400, objectFit: "contain" }}/>
       </Carousel.Item>
     </Carousel>
- 
+
   <Card.Text>
               { detail.price }
          </Card.Text>
@@ -70,8 +85,18 @@ const[detail,setDetail] = useState ({})
           <Card.Text>
              Actualizado:{ detail.updatedAt}
           </Card.Text>
-        
+  
     </Card.Body>
+    <Row className="mb-3">
+        <Col>
+          <Button onClick={() => setCounter(counter - 1)}>-</Button>
+          {counter}
+          <Button onClick={() => setCounter(counter + 1)}>+</Button>
+        </Col>
+        <Col>
+          <Button onClick={()=>addPurchases()}>Añadir a favoritos</Button>
+        </Col>
+      </Row>
 </Card>
     </Container>
 

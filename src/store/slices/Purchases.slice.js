@@ -16,9 +16,16 @@ export const getpurchasesThunk = () => dispatch => {
 
     axios
         .get( "https://e-commerce-api-v2.academlo.tech/api/v1/cart ", getConfig())
-        .then( resp => console.log(resp.data) )
+        .then( resp => dispatch(setpurchases(resp.data)) )
         .catch( error => console.error(error) )
 
+}
+
+export const createPurchasesThunk = data => dispatch =>  {
+    axios
+      .post("https://e-commerce-api-v2.academlo.tech/api/v1/cart",data, getConfig())
+    .then (()=> dispatch(getpurchasesThunk ()))
+    .catch(error => console.error(error))
 }
 
 export const { setpurchases } = purchasesSlice.actions;

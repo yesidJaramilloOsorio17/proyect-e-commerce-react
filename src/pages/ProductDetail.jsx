@@ -3,8 +3,8 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Card from 'react-bootstrap/Card'
-import Col from 'react-bootstrap/Col'
 import { Container } from "react-bootstrap"
+import Carousel from 'react-bootstrap/Carousel';
 
 
 
@@ -29,23 +29,29 @@ const[detail,setDetail] = useState ({})
     
           <Card className="detail ">
                <Card.Title> <h1> {detail.title}</h1></Card.Title>
-          
-            <div>
-                    <Card.Img
+               <Carousel>
+      <Carousel.Item>
+                      <Card.Img
        variant="top" 
       src={detail.images?.[2].url}
      style={{ width: 350, height: 400, objectFit: "contain" }}/>
-         <Card.Img
+      </Carousel.Item>
+      <Carousel.Item>
+           <Card.Img
        variant="top" 
       src={detail.images?.[1].url}
      
       style={{ width: 350, height: 400, objectFit: "contain" }}/>
-            <Card.Img
+      </Carousel.Item>
+      <Carousel.Item>
+           <Card.Img
        variant="top" 
       src={detail.images?.[0].url}
      
       style={{ width: 350, height: 400, objectFit: "contain" }}/>
-            </div>
+      </Carousel.Item>
+    </Carousel>
+ 
   <Card.Text>
               { detail.price }
          </Card.Text>

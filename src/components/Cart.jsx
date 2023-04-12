@@ -3,7 +3,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import {getpurchasesThunk} from "../store/slices/Purchases.slice" 
-import { Card } from 'react-bootstrap'
+import Card from 'react-bootstrap/Card'
 
 
 

@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card'
 import { Container } from "react-bootstrap"
 import Carousel from 'react-bootstrap/Carousel'
 import Button from "react-bootstrap/Button"
-import Col from "react-bootstrap/col"
+import Col from 'react-bootstrap/Col'
 import Row from "react-bootstrap/Row"
 import {createPurchasesThunk} from "../store/slices/Purchases.slice"
 import { useDispatch } from "react-redux"
@@ -32,7 +32,7 @@ const dispatch = useDispatch()
       productId: id
     }
 
-    dispatch(createPurchasesThunk(data));
+    dispatch(createPurchasesThunk(data))
   }
 
   return (

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
+import { Container } from "react-bootstrap"
 
 
 
@@ -21,7 +22,9 @@ const[detail,setDetail] = useState ({})
 
   return (
     
-    <Col className="grid" >
+    <Container 
+    style={{  padding: "1rem"}}
+    >
     
     
           <Card className="detail ">
@@ -64,7 +67,7 @@ const[detail,setDetail] = useState ({})
         
     </Card.Body>
 </Card>
-    </Col>
+    </Container>
 
 
      

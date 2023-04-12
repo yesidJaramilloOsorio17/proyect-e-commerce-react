@@ -3,13 +3,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Form  from 'react-bootstrap/Form';
+import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { useSelector, useDispatch } from 'react-redux';
-import { getNewsThunk, filterCategoriesThunk,  filterHeadCategoriesThunk  } from '../store/slices/news.slice';
-import { useEffect,useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+
+import { useSelector, useDispatch } from 'react-redux'
+import { getNewsThunk, filterCategoriesThunk,  filterHeadCategoriesThunk  } from '../store/slices/news.slice'
+import { useEffect,useState } from 'react'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 
 
@@ -18,6 +19,7 @@ const Home = () => {
     const dispatch = useDispatch()
     const[categories, setCategories] = useState([])
     const[inputSearch, setInputSearch] = useState ("") 
+   
 
     useEffect( () => {
         dispatch( getNewsThunk() )
@@ -28,58 +30,52 @@ const Home = () => {
     }, [] )
 
     return (
-        <div>
+       <div>
+          
+        <Container >
+
+        <Row className='py-3'>
            
- <Container className='gap'>
-               <Row className='gap'>
-                <Col>
-                 < InputGroup className="d-flex">
+            <Col>
+        <>
+    < InputGroup className="mb-3">
              < Form.Control
-             placeholder='Buscar producto'
-             aria-label='news`s name'
-             aria-describedby='basic-addon2'
+             placeholder='products...'
+             aria-label="Recipient's username"
+             aria-describedby="basic-addon2"
              value = {inputSearch}
               onChange={e  => setInputSearch(e.target.value)}
             
              />
               <Button
               variant="outline-primary"
-              onClick={() => dispatch( 
-              filterHeadCategoriesThunk (inputSearch) )}>
+              onClick={() => dispatch( filterHeadCategoriesThunk (inputSearch) )}
+              >
                 Search
             </Button>
-
-             </ InputGroup>
-                </Col>
+          </ InputGroup>
+            </>
+            </Col>
+    </Row> 
            
-            </Row>
-
-            <Card className='card'>
-                <h3>category</h3>
-
-                  <Row  >
-               
+     <Row className='py-3' >
+       <h3>Category</h3>
                {
-
-                categories.map(category =>
-                    <Col key={category.id}>
+               categories.map(category =>
+                <Col key={category.id}>
                 <Button className='w-100' onClick={ ()=>
                 dispatch( filterCategoriesThunk(category.id) )  }
                 >{category.name}</Button>
               </Col>
-                    )
-               }
+                )}
                <Col>
                 <Button onClick={()=>dispatch(getNewsThunk())}
                   className="w-100">All</Button>
                </Col>
+    </Row>
 
-            </Row>
-            </Card>
-        
-         
-                <Row xs={1} md={2} lg={3} className="py-3">
-                    {
+     <Row xs={1} md={2} lg={3} className="py-3">
+                 {
                         products .map( product => (
                             <Col className="mb-3" key={ product.id }>
                                 <Card>
@@ -109,7 +105,11 @@ const Home = () => {
                     
                 </Row>
            </Container>
-        </div>
+       
+      </div>     
+ 
+        
+          
     );
 }
 
